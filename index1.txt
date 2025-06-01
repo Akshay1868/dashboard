@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akshay's Dashboard</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+    }
+    .slide {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background-color: black;
+      text-align: center;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .hidden {
+      display: none;
+    }
+    .headline-feed, .fashion-feed, .airport-feed {
+      padding: 2em;
+      font-size: 1.5em;
+    }
+    #slide-9 {
+  max-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Flight table styling */
+.flight-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: white;
+  margin-bottom: 2em;
+  table-layout: auto;
+  min-width: 300px;
+}
+
+.flight-table th, .flight-table td {
+  padding: 0.5em 0.7em;
+  border-bottom: 1px solid #444;
+  text-align: left;
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+.flight-table th {
+  background-color: #111;
+  font-weight: 600;
+  font-size: 1em;
+}
+
+/* Responsive: Make tables scroll horizontally on small screens */
+#slide-9 {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+/* Smaller fonts on narrow screens */
+@media (max-width: 768px) {
+  .flight-table th, .flight-table td {
+    font-size: 0.85em;
+    padding: 0.4em 0.5em;
+  }
+  #slide-9 {
+    padding: 1em;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <div id="slides">
+    <!-- 1. Welcome Screen -->
+    <div class="slide" id="slide-0">
+      <h1 style="font-size: 3em; font-weight: bold; letter-spacing: 1px;">Akshay's Dashboard</h1>
+      <p style="font-size: 1.5em; opacity: 0.7;">Welcome to your digital desk</p>
+    </div>
+
+    <!-- 2. Dual Clock with JS -->
+    <div class="slide hidden" id="slide-1">
+      <div style="display:flex; justify-content:space-around; width:100%; font-size: 2em;">
+        <div>
+          <h2>Amsterdam</h2>
+          <div id="ams-time">Loading...</div>
+        </div>
+        <div>
+          <h2>Hyderabad</h2>
+          <div id="hyd-time">Loading...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. NL Times RSS -->
+    <div class="slide hidden" id="slide-4">
+      <div class="headline-feed" id="nltimes">Loading NL Times headlines...</div>
+    </div>
+
+    <!-- 6. Economic Times RSS -->
+    <div class="slide hidden" id="slide-5">
+      <div class="headline-feed" id="etimes">Loading Economic Times headlines...</div>
+    </div>
+
+    <!-- 7. Gold Rates -->
+    <div class="slide hidden" id="slide-6">
+      <iframe src="https://www.goodreturns.in/gold-rates/" allowfullscreen></iframe>
+    </div>
+
+    <!-- 8. Working YouTube Live Stream (Travel/City Walk) -->
+    <div class="slide hidden" id="slide-7">
+      <iframe width="1280" height="720" src="https://www.youtube.com/embed/Gd9d4q6WvUY?si=_7BSEFMWwcUzLZCJ?VQ=HD1080&autoplay=1&mute=1&controls=0&vq=hd1080" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <!-- 8. Working YouTube Live Stream (Travel/City Walk) -->
+    <div class="slide hidden" id="slide-8">
+      <iframe width="1280" height="720" src="https://www.youtube.com/embed/HfgIFGbdGJ0?si=iqUHXzsuUqFL5D17&autoplay=1&mute=1&controls=0&vq=hd1080" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+
+    <!-- 9. Working YouTube Live Stream (Travel/City Walk) -->
+    <div class="slide hidden" id="slide-10">
+    <iframe width="1280" height="720" src="https://www.youtube.com/embed/z7SiAaN4ogw?si=V03bGGt0DVhvY-Ur&amp;controls=0&autoplay=1&mute=1&vq=hd1080&controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+  <style>
+  .responsive-container {
+    position: relative;
+    padding-bottom: 53.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+  }
+  .responsive-container,
+    .responsive-container iframe {
+    max-width: 1280px;
+    max-height: 720px;
+  }
+  .responsive-container iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+  <div class="slide hidden" id="slide-9" style="padding: 1em; overflow-y: auto; background-color: black; color: white;">
+    <h2 style="text-align:center; margin-bottom: 1em;">Schiphol Airport Live Flights</h2>
+  
+    <h3>Departures</h3>
+    <div style="max-height: 40vh; overflow-y: auto; margin-bottom: 2em;">
+      <table id="departures" class="flight-table">
+        <thead>
+          <tr>
+            <th>Flight</th>
+            <th>Airline</th>
+            <th>Destination</th>
+            <th>Scheduled</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>Loading departures...</tbody>
+      </table>
+    </div>
+  
+    <h3>Arrivals</h3>
+    <div style="max-height: 40vh; overflow-y: auto;">
+      <table id="arrivals" class="flight-table">
+        <thead>
+          <tr>
+            <th>Flight</th>
+            <th>Airline</th>
+            <th>Origin</th>
+            <th>Scheduled</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>Loading arrivals...</tbody>
+      </table>
+    </div>
+  </div>
+  
+  <style>
+    .flight-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: auto;
+      color: white;
+      min-width: 320px;
+    }
+    .flight-table th, .flight-table td {
+      border-bottom: 1px solid #444;
+      padding: 0.4em 0.7em;
+      text-align: left;
+      white-space: nowrap;
+    }
+    .flight-table th {
+      background-color: #111;
+    }
+    @media (max-width: 768px) {
+      .flight-table th, .flight-table td {
+        font-size: 0.85em;
+        padding: 0.3em 0.5em;
+      }
+    }
+  </style>
+
+<!-- Add this inside your slides container as a new slide -->
+<div class="slide hidden" id="slide-11" style="padding: 1em; color: white; background-color: black; overflow-y: auto;">
+  <h2 style="text-align: center; margin-bottom: 1em;">Gold & Silver Prices (INR per gram)</h2>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2em;">
+    <div style="min-width: 250px; text-align: center;">
+      <h3>Gold 24 hour (INR/g)</h3>
+      <a href="http://www.kitco.com/connecting.html" target="_blank" rel="noopener noreferrer">
+        <img src="http://www.kitconet.com/charts/metals/gold/t24_au_en_ingr_2.gif" alt="Gold 24 hour INR price per gram" style="max-width: 100%; height: auto; border: 1px solid #444;">
+      </a>
+    </div>
+
+    <div style="min-width: 250px; text-align: center;">
+      <h3>Gold 8 hour NY (INR/g)</h3>
+      <a href="http://www.kitco.com/connecting.html" target="_blank" rel="noopener noreferrer">
+        <img src="http://www.kitconet.com/charts/metals/gold/tny_au_en_ingr_2.gif" alt="Gold 8 hour NY INR price per gram" style="max-width: 100%; height: auto; border: 1px solid #444;">
+      </a>
+    </div>
+
+    <div style="min-width: 250px; text-align: center;">
+      <h3>Silver 24 hour (INR/g)</h3>
+      <a href="http://www.kitco.com/connecting.html" target="_blank" rel="noopener noreferrer">
+        <img src="http://www.kitconet.com/charts/metals/silver/t24_ag_en_ingr_2.gif" alt="Silver 24 hour INR price per gram" style="max-width: 100%; height: auto; border: 1px solid #444;">
+      </a>
+    </div>
+
+    <div style="min-width: 250px; text-align: center;">
+      <h3>Silver 8 hour NY (INR/g)</h3>
+      <a href="http://www.kitco.com/connecting.html" target="_blank" rel="noopener noreferrer">
+        <img src="http://www.kitconet.com/charts/metals/silver/tny_ag_en_ingr_2.gif" alt="Silver 8 hour NY INR price per gram" style="max-width: 100%; height: auto; border: 1px solid #444;">
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Currency Exchange Rates Slide -->
+<div class="slide hidden" id="slide-currency">
+  <h2>Currency Exchange Rates (Live)</h2>
+  <div id="currency-rates" style="font-size: 1.5em; line-height: 1.6;"></div>
+ <!--  <h2>Cryptocurrency Prices (Live)</h2>
+  <div id="crypto-prices" style="font-size: 1.5em; line-height: 1.6;"></div> -->
+</div>
+
+<!-- Crypto Prices Slide -->
+<div class="slide hidden" id="slide-crypto">
+  <h2>Cryptocurrency Prices (Live)</h2>
+  <div id="crypto-prices" style="font-size: 1.5em; line-height: 1.6;"></div>
+</div>
+
+<!-- Random Book Quotes Slide -->
+<div class="slide hidden" id="slide-quotes">
+  <h2>Motivational Book Quotes</h2>
+  <blockquote id="book-quote" style="font-size: 1.6em; font-style: italic; max-width: 800px; margin: 0 auto;"></blockquote>
+  <p id="book-title" style="margin-top: 0.5em; font-weight: bold;"></p>
+</div>
+
+<!-- New Slide for Times Square & Statue of Liberty live streams -->
+<div class="slide hidden" id="slide-13" style="display: flex; width: 100vw; height: 100vh; background: black;">
+  <iframe
+    src="https://www.youtube.com/embed/rnXIjl_Rzy4?autoplay=1&mute=1&controls=0"
+    frameborder="0"
+    allow="autoplay; encrypted-media; picture-in-picture"
+    allowfullscreen
+    style="width: 50vw; height: 100vh; border: none;"
+    title="New York Times Square Live"
+  ></iframe>
+
+  <iframe
+    src="https://www.youtube.com/embed/IOz_BoSpEi4?autoplay=1&mute=1&controls=0"
+    frameborder="0"
+    allow="autoplay; encrypted-media; picture-in-picture"
+    allowfullscreen
+    style="width: 50vw; height: 100vh; border: none;"
+    title="Statue of Liberty Live"
+  ></iframe>
+</div>
+
+  <script>
+    let current = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlide(index) {
+      slides.forEach((s, i) => {
+        s.classList.toggle('hidden', i !== index);
+      });
+    }
+
+    function nextSlide() {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }
+
+    // Initial start
+    showSlide(current);
+    setInterval(nextSlide, 1000);
+
+    // Clock Function
+    function updateClock(id, timeZone) {
+      const now = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone });
+      document.getElementById(id).innerText = now;
+    }
+
+    setInterval(() => {
+      updateClock('ams-time', 'Europe/Amsterdam');
+      updateClock('hyd-time', 'Asia/Kolkata');
+    }, 1000);
+
+    // Fetch NL Times headlines
+    fetch('https://api.rss2json.com/v1/api.json?rss_url=https://nltimes.nl/rss')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('nltimes');
+        container.innerHTML = '<h2>NL Times</h2>' + data.items.slice(0, 5).map(item => `<p>• ${item.title}</p>`).join('');
+      });
+
+    // Fetch Economic Times headlines
+    fetch('https://api.rss2json.com/v1/api.json?rss_url=https://economictimes.indiatimes.com/rssfeedsdefault.cms')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('etimes');
+        container.innerHTML = '<h2>Economic Times</h2>' + data.items.slice(0, 5).map(item => `<p>• ${item.title}</p>`).join('');
+      });
+
+  </script>
+  <script>
+    const API_KEY = 'e1837816e59fb415042d5da2e5ca66b1'; // Replace with your AviationStack API key
+    const BASE_URL = 'http://api.aviationstack.com/v1/flights';
+  
+    async function fetchFlights(type) {
+      const airportCode = 'AMS'; // Schiphol Airport IATA code
+      const params = new URLSearchParams({
+        access_key: API_KEY,
+        airport_iata: airportCode,
+        flight_status: 'scheduled',
+        limit: 20,
+        type: type, // 'departure' or 'arrival'
+        sort: 'scheduled_time'
+      });
+  
+      try {
+        const res = await fetch(`${BASE_URL}?${params.toString()}`);
+        const data = await res.json();
+        return data.data || [];
+      } catch (error) {
+        console.error('Error fetching flight data:', error);
+        return [];
+      }
+    }
+  
+    function formatTime(timeStr) {
+      if (!timeStr) return '-';
+      const date = new Date(timeStr);
+      if (isNaN(date)) return timeStr;
+      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    }
+  
+    function renderFlights(tableId, flights, type) {
+      const tbody = document.querySelector(`#${tableId} tbody`);
+      if (!flights.length) {
+        tbody.innerHTML = `<tr><td colspan="5">No ${type} flights available.</td></tr>`;
+        return;
+      }
+  
+      tbody.innerHTML = flights.map(flight => {
+        const flightNumber = flight.flight ? flight.flight.iata || flight.flight.number : '-';
+        const airline = flight.airline ? flight.airline.name : '-';
+        const city = type === 'departure'
+          ? (flight.departure ? flight.departure.iata : '-')
+          : (flight.arrival ? flight.arrival.iata : '-');
+        const scheduled = type === 'departure'
+          ? (flight.departure ? formatTime(flight.departure.scheduled) : '-')
+          : (flight.arrival ? formatTime(flight.arrival.scheduled) : '-');
+        const status = flight.flight_status || '-';
+  
+        return `<tr>
+          <td>${flightNumber}</td>
+          <td>${airline}</td>
+          <td>${city}</td>
+          <td>${scheduled}</td>
+          <td>${status}</td>
+        </tr>`;
+      }).join('');
+    }
+  
+    async function updateFlightTables() {
+      const departures = await fetchFlights('departure');
+      const arrivals = await fetchFlights('arrival');
+      renderFlights('departures', departures, 'departure');
+      renderFlights('arrivals', arrivals, 'arrival');
+    }
+  
+    // Update every 5 minutes
+    updateFlightTables();
+    setInterval(updateFlightTables, 300000);
+  </script>
+
+<script>
+  // Currency Exchange Rates - using exchangerate-api.com (replace YOUR_API_KEY with your key)
+  async function fetchCurrencyRates() {
+    const url = 'https://v6.exchangerate-api.com/v6/7fa4ebc90422a451c6084ea1/latest/EUR'; // base EUR
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      if (data.result !== 'success') throw new Error('API Error');
+
+      const rates = data.conversion_rates;
+      const pairs = ['INR', 'USD', 'GBP'];
+      let html = pairs.map(pair => `1 EUR = ${rates[pair]} ${pair}`).join('<br>');
+
+      const usdToInr = (rates['INR'] / rates['USD']).toFixed(2);
+      const gbpToInr = (rates['INR'] / rates['GBP']).toFixed(2);
+      html += `<br>1 USD = ${usdToInr} INR`;
+      html += `<br>1 GBP = ${gbpToInr} INR`;
+
+      document.getElementById('currency-rates').innerHTML = `<h2 style="text-align:center;">Currency Exchange Rates (Live)</h2>` + html;
+    } catch (e) {
+      document.getElementById('currency-rates').innerText = 'Failed to load currency rates.';
+    }
+  }
+  fetchCurrencyRates();
+  setInterval(fetchCurrencyRates, 5 * 60 * 1000); // every 5 min
+
+  // Crypto Prices - CoinGecko API
+  async function fetchCryptoPrices() {
+    try {
+      const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=inr,eur');
+      const data = await res.json();
+      let html = `
+        Bitcoin: ₹${data.bitcoin.inr.toLocaleString()} | €${data.bitcoin.eur.toLocaleString()}<br>
+        Ethereum: ₹${data.ethereum.inr.toLocaleString()} | €${data.ethereum.eur.toLocaleString()}
+      `;
+      document.getElementById('crypto-prices').innerHTML = `<h2 style="text-align:center;">Cryptocurrency Prices (Live)</h2>` + html;
+    } catch (e) {
+      document.getElementById('crypto-prices').innerText = 'Failed to load crypto prices.';
+    }
+  }
+  fetchCryptoPrices();
+  setInterval(fetchCryptoPrices, 5 * 60 * 1000);
+
+  // Random Book Quotes
+  const quotes = [
+    { book: "Rich Dad, Poor Dad", text: "It's not how much money you make, but how much money you keep." },
+    { book: "Naked Mind", text: "Change happens not by stopping something, but by starting something new." },
+    { book: "Easy Way to Stop Smoking", text: "The desire to smoke is just a habit, and habits can be changed." },
+    { book: "The Richest Man in Babylon", text: "Start thy purse to fattening." },
+    { book: "The Monk Who Sold His Ferrari", text: "Success on the outside means nothing unless you also have success within." }
+  ];
+  function showRandomQuote() {
+    const q = quotes[Math.floor(Math.random() * quotes.length)];
+    document.getElementById('book-quote').innerText = `"${q.text}"`;
+    document.getElementById('book-title').innerText = `— ${q.book}`;
+  }
+  showRandomQuote();
+  setInterval(showRandomQuote, 60 * 1000);
+</script>
+<script>
+
+  // Flight Info (AMS → HYD) using Skyscanner Flight Search API (requires API key)
+  async function fetchFlights() {
+    // You need to sign up for Skyscanner RapidAPI or Amadeus API and replace placeholders below
+    // Sample dummy data shown below as fallback
+    const flightsDummy = [
+      { date: '2025-05-30', airline: 'KLM', flightNumber: 'KL123', departure: '10:00', arrival: '22:00', priceEUR: 350 },
+      { date: '2025-05-31', airline: 'Emirates', flightNumber: 'EK456', departure: '14:00', arrival: '02:00+1', priceEUR: 420 },
+      { date: '2025-06-01', airline: 'Qatar Airways', flightNumber: 'QR789', departure: '08:30', arrival: '20:30', priceEUR: 390 }
+    ];
+    let html = flightsDummy.map(f => `
+      <div style="margin-bottom: 1em;">
+        <strong>${f.date}</strong><br>
+        ${f.airline} ${f.flightNumber} | Dep: ${f.departure} | Arr: ${f.arrival} | Price: €${f.priceEUR}
+      </div>
+    `).join('');
+    document.getElementById('flight-info').innerHTML = html;
+
+    // Uncomment and implement your actual API call here
+    /*
+    const response = await fetch('YOUR_FLIGHT_API_ENDPOINT');
+    const flightData = await response.json();
+    // parse and display flights similar to dummy above
+    */
+  }
+  fetchFlights();
+  // You can also setInterval here if your API supports frequent updates
+</script>
+</body>
+</html>
